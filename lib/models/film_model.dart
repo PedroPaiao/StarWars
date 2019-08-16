@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:starwars_revenge/ui/film_page.dart';
 
 class FilmModel extends StatefulWidget {
-  Response response;
   List characters = [];
+  List planets = [];
   bool completed = false;
   Map _item;
 
@@ -59,24 +59,28 @@ class FilmModel extends StatefulWidget {
 
 class _FilmModelState extends State<FilmModel> {
   constructingTheBank() async{
+    Response response;
     for(String link in widget._item['characters']) {
-      widget.response = await Dio().get(link);
-      widget.characters.add(widget.response.data);
-//      print('ñ saiu');
+      response = await Dio().get(link);
+      widget.characters.add(response.data);
     }
-    print(widget.characters);
+    for(String link in widget._item['planets']) {
+      response = await Dio().get(link);
+      widget.planets.add(response.data);
+    }
+    print('entrou');
     setState(() {
       widget.completed = true;
     });
   }
   @override
   Widget build(BuildContext context) {
-    if(widget.characters.length == 0)constructingTheBank();
-    return  !widget.completed ?  Center(child: CircularProgressIndicator()) : GestureDetector(
+    if(widget.characters.length == 0 && widget.planets.length == 0)constructingTheBank(); //Cancela as repetições
+    return  GestureDetector(
       child: Card(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Column(
+            child: !widget.completed ?  Center(child: CircularProgressIndicator()) : Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
             Text(widget._item['title'],
@@ -94,8 +98,8 @@ class _FilmModelState extends State<FilmModel> {
       ),
           )),
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (_) => FilmPage(widget._item, widget.characters)));
+        if(widget.completed)Navigator.push(
+            context, MaterialPageRoute(builder: (_) => FilmPage(widget._item, widget.characters, widget.planets)));
       },
     );
   }

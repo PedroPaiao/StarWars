@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class FilmPage extends StatefulWidget {
   Map item;
   List character;
+  List planets;
+
   FilmPage(
-      this.item,
-      this.character,
-      );
+    this.item,
+    this.character,
+    this.planets,
+  );
+
   @override
   _FilmPageState createState() => _FilmPageState();
 }
@@ -14,7 +18,7 @@ class FilmPage extends StatefulWidget {
 class _FilmPageState extends State<FilmPage> {
   @override
   Widget build(BuildContext context) {
-    print(widget.character);
+    //print(widget.character);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,6 +26,7 @@ class _FilmPageState extends State<FilmPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -47,40 +52,41 @@ class _FilmPageState extends State<FilmPage> {
                 Text('${widget.item['release_date']}'),
               ],
             ),
-            Row(
-              children: <Widget>[ //Arrumar
-                Text('Atores participantes: '),
-                Column(
-                  children: widget.character.map((character){
-                    return Text(character['name']);
-                  }).toList(),
-                ),
-              ],
+            Text('Atores participantes: '),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: widget.character.map((item) {
+                return Text(item['name']);
+              }).toList(),
+            ),
+            Text('Planetas participantes: '),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: widget.planets.map((item) {
+                return Text(item['name']);
+              }).toList(),
             ),
             Row(
-              children: <Widget>[ //Arrumar
+              children: <Widget>[
+                //Arrumar
                 Text('Episodio: '),
                 Text('${widget.item['episode_id']}'),
               ],
             ),
             Row(
-              children: <Widget>[ //Arrumar
+              children: <Widget>[
+                //Arrumar
                 Text('Episodio: '),
                 Text('${widget.item['episode_id']}'),
               ],
             ),
             Row(
-              children: <Widget>[ //Arrumar
+              children: <Widget>[
+                //Arrumar
                 Text('Episodio: '),
                 Text('${widget.item['episode_id']}'),
               ],
-            ),
-            Row(
-              children: <Widget>[ //Arrumar
-                Text('Episodio: '),
-                Text('${widget.item['episode_id']}'),
-              ],
-            ),//Padrao de Texto
+            ), //Padrao de Texto
           ],
         ),
       ),
