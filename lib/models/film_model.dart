@@ -11,6 +11,16 @@ class FilmModel extends StatefulWidget {
   List species = [];
   Map _item;
 
+  Map<String, dynamic> map2 = {
+  '1': 'assets/1.jpg',
+  '2': 'assets/2.jpg',
+  '3': 'assets/3.png',
+  '4': 'assets/4.jpg',
+  '5': 'assets/5.jpg',
+  '6': 'assets/6.jpg',
+  '7': 'assets/7.jpg',
+  };
+
   String _title;
   String _episodeId;
   String _openingCrawl;
@@ -81,7 +91,7 @@ class _FilmModelState extends State<FilmModel> {
     for (String link in widget._item['species']) {
       response = await Dio().get(link);
       widget.species.add(response.data);
-    }
+    } //Foi bom enquanto durou <3
     print('entrou');
     setState(() {
       widget.completed = true;
@@ -96,6 +106,7 @@ class _FilmModelState extends State<FilmModel> {
         widget.vehicles.length == 0 &&
         widget.species.length == 0)
       constructingTheBank(); //Cancela as repetições
+    print(widget._item['episode_id'].toString());
     return GestureDetector(
       child: Card(
           child: Padding(
@@ -105,6 +116,7 @@ class _FilmModelState extends State<FilmModel> {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  Image.asset(widget.map2['${widget._item['episode_id']}']),
                   Text(widget._item['title'],
                       style: TextStyle(
                           fontStyle: FontStyle.italic,
@@ -124,8 +136,13 @@ class _FilmModelState extends State<FilmModel> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (_) => FilmPage(widget._item, widget.characters,
-                      widget.planets, widget.starships, widget.vehicles, widget.species)));
+                  builder: (_) => FilmPage(
+                      widget._item,
+                      widget.characters,
+                      widget.planets,
+                      widget.starships,
+                      widget.vehicles,
+                      widget.species)));
       },
     );
   }
