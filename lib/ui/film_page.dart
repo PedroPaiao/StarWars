@@ -108,7 +108,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 13)),
+                                  fontSize: 15)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +124,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 13)),
+                                  fontSize: 15)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +142,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 13)),
+                                  fontSize: 15)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -160,7 +160,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 13)),
+                                  fontSize: 15)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -178,7 +178,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 13)),
+                                  fontSize: 15)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
