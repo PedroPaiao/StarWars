@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:starwars_revenge/models/film_model.dart';
+import 'package:starwars_revenge/models/star_wars_model.dart';
 
 class HomePage extends StatefulWidget {
-  List batatinha;
-
-  HomePage(
-    this.batatinha,
-  );
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -17,18 +13,28 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: Colors.grey,
-          centerTitle: true,
-          title: Text('Filmes'),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            children: widget.batatinha.map((item) {
-              return FilmModel(item);
-            }).toList(), //Vetor de filhos
-          ),
-        ));
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        centerTitle: true,
+        title: Text('Filmes'),
+      ),
+      body: ScopedModelDescendant<StarWarsModel>(
+        builder: (context, child, model) {
+          if (!model.bankLoaded) {
+            model.initBank();
+          }
+          return model.bankLoading
+              ? Center(child: CircularProgressIndicator())
+              : SingleChildScrollView(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: model.films.map((item) {
+                return FilmModel(item);
+              }).toList(), //Vetor de filhos
+            ),
+          );
+        },
+      ),
+    );
   }
 }
