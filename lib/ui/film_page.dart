@@ -20,12 +20,37 @@ class _FilmPageState extends State<FilmPage> {
       appBar: AppBar(
         backgroundColor: Colors.grey,
         centerTitle: true,
-        title: Text(widget._item['title']),
+        title: Text(
+          '${widget._item['title']}',
+          style: TextStyle(
+            fontSize: 24.0,
+            inherit: true,
+            shadows: [
+              Shadow(
+                  // bottomLeft
+                  offset: Offset(-1.5, -1.5),
+                  color: Color.fromRGBO(255, 232, 31, 70)),
+              Shadow(
+                  // bottomRight
+                  offset: Offset(1.5, -1.5),
+                  color: Color.fromRGBO(255, 232, 31, 70)),
+              Shadow(
+                  // topRight
+                  offset: Offset(1.5, 1.5),
+                  color: Color.fromRGBO(255, 232, 31, 70)),
+              Shadow(
+                  // topLeft
+                  offset: Offset(-1.5, 1.5),
+                  color: Color.fromRGBO(255, 232, 31, 70)),
+            ],
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/back.jpg'),
-          fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage('assets/back.jpg'), fit: BoxFit.cover),
         ),
         child: ScopedModelDescendant<StarWarsModel>(
           builder: (context, child, model) {
@@ -38,6 +63,7 @@ class _FilmPageState extends State<FilmPage> {
                 ? Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,13 +103,13 @@ class _FilmPageState extends State<FilmPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Text('Produtor(a): ',
-                                style: TextStyle(
-                                    fontSize: 11.0, color: Colors.white)),
-                            Text('${model.films[index]['producer']}',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11.0,
-                                    decoration: TextDecoration.underline)),
+                                style: TextStyle(fontSize: 14.0)),
+                            Expanded(
+                              child: Text('${model.films[index]['producer']}',
+                                  style: TextStyle(
+                                      fontSize: 14.0,
+                                      decoration: TextDecoration.underline)),
+                            ),
                           ],
                         ),
                         Row(
@@ -102,13 +128,18 @@ class _FilmPageState extends State<FilmPage> {
                                     fontSize: 12.0, color: Colors.white)),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Text('Atores participantes: ',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 15)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Text('Atores participantes: ',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      decoration: TextDecoration.underline,
+                                      fontSize: 15)),
+                            ),
+                          ],
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
