@@ -18,12 +18,12 @@ class MyApp extends StatelessWidget {
         asset: assets[assetIndex],
         folder: "assets/audios/",
       ),
-    );
+    );//Inicia a musica pela Main.
   }
 
   @override
   Widget build(BuildContext context) {
-    _open(0);
+    _open(0); //Chama a musica.
     return ScopedModel<StarWarsModel>(
         model: StarWarsModel(),
         child: MaterialApp(
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: HomePage(),
+          home: HomePage(), //Chama minha homePage
         ));
   }
 }

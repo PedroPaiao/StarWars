@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:starwars_revenge/models/star_wars_model.dart';
 
+import 'ator_page.dart';
+
 class FilmPage extends StatefulWidget {
   final Map _item;
   bool loaded = false;
@@ -73,7 +75,7 @@ class _FilmPageState extends State<FilmPage> {
                               child: Text('Episodio: ',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16.0,
+                                      fontSize: 17.0,
                                       decoration: TextDecoration.underline)),
                             ),
                             Text('${model.films[index]['episode_id']}',
@@ -90,7 +92,7 @@ class _FilmPageState extends State<FilmPage> {
                               padding: const EdgeInsets.all(8.0),
                               child: Text('Diretor: ',
                                   style: TextStyle(
-                                      fontSize: 11.0, color: Colors.white)),
+                                      fontSize: 14.0, color: Colors.white)),
                             ),
                             Text('${model.films[index]['director']}',
                                 style: TextStyle(
@@ -137,7 +139,7 @@ class _FilmPageState extends State<FilmPage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       decoration: TextDecoration.underline,
-                                      fontSize: 15)),
+                                      fontSize: 20)),
                             ),
                           ],
                         ),
@@ -145,8 +147,16 @@ class _FilmPageState extends State<FilmPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: model.films[index]['characters']
                               .map<Widget>((item) {
-                            return Text('${item['name']}',
-                                style: TextStyle(color: Colors.white));
+                            return Card(
+                              child: GestureDetector(
+                                child: Text('${item['name']}',
+                                    style: TextStyle(color: Colors.black87)),
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (_) => AtorPage(item, index)));
+                                },
+                              ),
+                            );
                           }).toList(),
                         ),
                         Padding(
@@ -155,7 +165,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 15)),
+                                  fontSize: 20)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +183,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 15)),
+                                  fontSize: 20)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +201,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 15)),
+                                  fontSize: 20)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -209,7 +219,7 @@ class _FilmPageState extends State<FilmPage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   decoration: TextDecoration.underline,
-                                  fontSize: 15)),
+                                  fontSize: 20)),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
