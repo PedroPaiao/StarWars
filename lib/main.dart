@@ -7,15 +7,11 @@ import 'models/star_wars_model.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   final assets = <String>[
     "Theme.mp3",
   ];
   final AssetsAudioPlayer _assetsAudioPlayer = AssetsAudioPlayer();
 
-  void _playPause() {
-    _assetsAudioPlayer.play();
-  }
   void _open(int assetIndex) {
     _assetsAudioPlayer.open(
       AssetsAudio(
